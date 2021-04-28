@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block post_area %}
+{% for post in posts %}
+  <article class="blog blog--six mb--50">
+    <div class="blog__inner">
+        <div class="blog__media">
+            <figure class="blog__thumb">
+                <img src="{{post.thumb}}" alt="Blog">
+                <a href="/{{post.slug}}" class="overlay-link">Jai Ho</a>
+            </figure>
+        </div>
+        <div class="blog__content">
+            <a href="archive" class="blog__category">{{post.author}}</a>
+            <h3 class="blog__title">
+                <a href="/{{post.slug}}">{{post.title}}</a>
+            </h3>
+            <div class="blog__meta">
+                <div class="blog__meta-item">
+                    <a class="blog__date" href="archive">{{post.time}}</a>
+                </div>
+            </div>
+            <p class="blog__excerpt">{{ post.desc|slice:":100" | safe}}</p>
+            <a class="blog__btn" href="/{{post.slug}}"><span>Read More <i data-feather="chevron-right"></i></span></a>
+        </div>
+    </div>
+</article>
+{% endfor %}
+
+{% endblock post_area %}
+
+{% block messages %}
+{% for message in messages %}
+ 
+<div class="alert alert-{{message.tags}} alert-dismissible fade show m-0" role="alert">
+    <strong>PIYUSH-PK: </strong> {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endblock messages %}
